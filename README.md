@@ -15,10 +15,12 @@ You guys like 0.7.2? Well, I do! Do you hate having to remove all the shit unnee
 - Reduced Deprecation Warnings
 - Removed unneeded files in Art folder in Root folder
 - Toggleable Videos option to reduce folder size
+- Organized menu folders/Uncluttered shared folder
+- Setup hmm/.BAT file(s)
 
 ## Installation:
 * Inside the root folder is another folder named "setup". If you struggle to compile, just run the .BAT file.
-* In addition to what's above, you can run ``haxelib run hmm install`` to do everything the .BAT file can if it happens to not work.
+* In addition to what's above, you can run ``haxelib run hmm install`` if all you want is the dependencies.
 
 # Psych Engine Credits:
 * Shadow Mario - Programmer
