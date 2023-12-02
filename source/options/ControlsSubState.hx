@@ -68,7 +68,7 @@ class ControlsSubState extends MusicBeatSubstate
 		options.push([true]);
 		options.push([true, defaultKey]);
 
-		bg = new FlxSprite().loadGraphic('menus/menuDesat');
+		bg = new FlxSprite().loadGraphic(Paths.image('menus/menuDesat'));
 		bg.color = keyboardColor;
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		bg.screenCenter();

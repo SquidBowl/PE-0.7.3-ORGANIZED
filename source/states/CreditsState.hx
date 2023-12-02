@@ -26,7 +26,7 @@ class CreditsState extends MusicBeatState
 		#end
 
 		persistentUpdate = true;
-		bg = new FlxSprite().loadGraphic('menus/menuDesat');
+		bg = new FlxSprite().loadGraphic(Paths.image('menus/menuDesat'));
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		add(bg);
 		bg.screenCenter();
