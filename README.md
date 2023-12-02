@@ -3,7 +3,7 @@ A fork of [Psych Engine](https://github.com/ShadowMario/) based off 0.7.2 Experi
 
 ## Changes
 - Removed unneeded Stage classes
-- Deleted any and all unneeded files/assets
+- Deleted any unneeded files/assets
 - Repathed folders to keep things organized
 - Fixed the slow camera movement in PlayState + MainMenuState
 - Added a Customizable FPS/MEM Counter
