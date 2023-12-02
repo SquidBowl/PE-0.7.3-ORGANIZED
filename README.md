@@ -17,7 +17,8 @@ You guys like 0.7.2? Well, I do! Do you hate having to remove all the shit unnee
 - Toggleable Videos option to reduce folder size
 
 ## Installation:
-Inside the root folder is another folder named "setup". If you struggle to compile, just run the .BAT file.
+* Inside the root folder is another folder named "setup". If you struggle to compile, just run the .BAT file.
+* In addition to what's above, you can run ``haxelib run hmm install`` to do everything the .BAT file can if it happens to not work.
 
 # Psych Engine Credits:
 * Shadow Mario - Programmer
