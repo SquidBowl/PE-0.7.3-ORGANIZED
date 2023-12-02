@@ -1,4 +1,7 @@
 # Friday Night Funkin' - Psych Engine Organized
+
+![logo](https://media.discordapp.net/attachments/1140073672997089330/1180408154790559744/BANNER.png?ex=657d4fc3&is=656adac3&hm=0fbe6e7987b88c14d8cfe53cf5a3985cbed7b8385f09795756d5601327449121&=&format=webp&quality=lossless&width=1401&height=700)
+
 A fork of [Psych Engine](https://github.com/ShadowMario/) based off 0.7.2 Experimental Branch that keeps modding and organization in mind. 
 
 ## Changes
