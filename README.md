@@ -10,6 +10,8 @@ A fork of [Psych Engine](https://github.com/ShadowMario/) based off 0.7.2 Experi
 - Repathed folders to keep things organized
 - Fixed the slow camera movement in PlayState + MainMenuState
 - Added a Customizable FPS/MEM Counter
+- Reduced Depracation Warnings
+- Removed unneeded files in Art folder in Root folder
 
 ## Installation:
 Inside the root folder is another folder named "setup". If you struggle to compile, just run the .BAT file.
