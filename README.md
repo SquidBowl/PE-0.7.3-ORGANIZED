@@ -15,6 +15,8 @@ You guys like 0.7.2? Well, I do! Do you hate having to remove all the shit unnee
 - Reduced Deprecation Warnings
 - Removed unneeded files in Art folder in Root folder
 - Toggleable Videos option to reduce folder size
+- Organized menu folders/Uncluttered shared folder
+- Setup HMM/.BAT file(s)
 
 ## Installation:
 * Inside the root folder is another folder named "setup". If you struggle to compile, just run the .BAT file.
