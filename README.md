@@ -8,6 +8,7 @@ You guys like 0.7.2? Well, I do! Do you hate having to remove all the shit unnee
 
 ## Changes
 - Removed unneeded Stage classes
+- Ran all images through oxipng for optimal image quality and performance
 - Deleted any unneeded files/assets
 - Repathed folders to keep things organized
 - Fixed the slow camera movement in PlayState + MainMenuState
