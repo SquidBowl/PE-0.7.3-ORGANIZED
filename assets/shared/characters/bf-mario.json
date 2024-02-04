@@ -1,0 +1,133 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				-107,
+				10
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "mario-bf idle dance"
+		},
+		{
+			"offsets": [
+				-116,
+				1
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "mario-bf sing left"
+		},
+		{
+			"offsets": [
+				-131,
+				8
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "mario-bf sing down"
+		},
+		{
+			"offsets": [
+				-137,
+				4
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "mario-bf sing right"
+		},
+		{
+			"offsets": [
+				-144,
+				15
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "hey",
+			"indices": [],
+			"name": "mario-bf hey bf"
+		},
+		{
+			"offsets": [
+				-141,
+				4
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFTmiss",
+			"indices": [],
+			"name": "mario-bf miss left"
+		},
+		{
+			"offsets": [
+				-134,
+				9
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWNmiss",
+			"indices": [],
+			"name": "mario-bf miss down"
+		},
+		{
+			"offsets": [
+				-136,
+				21
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUPmiss",
+			"indices": [],
+			"name": "mario-bf miss up"
+		},
+		{
+			"offsets": [
+				-140,
+				11
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHTmiss",
+			"indices": [],
+			"name": "mario-bf miss right"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-132,
+				37
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "bf-mario sing up",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/bf-mario",
+	"position": [
+		10,
+		350
+	],
+	"healthicon": "bf",
+	"flip_x": true,
+	"healthbar_colors": [
+		49,
+		176,
+		209
+	],
+	"camera_position": [
+		-10,
+		0
+	],
+	"sing_duration": 4,
+	"scale": 1.5
+}
