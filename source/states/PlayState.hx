@@ -1927,6 +1927,14 @@ class PlayState extends MusicBeatState
 				if(flValue1 == null || flValue1 < 1) flValue1 = 1;
 				gfSpeed = Math.round(flValue1);
 
+			case 'White Flash':
+				var whiteGraphic:FlxSprite = new FlxSprite(0, 0);
+				whiteGraphic.makeGraphic(3560, 2560, 0xFFFFFFFF);
+				add(whiteGraphic);
+				whiteGraphic.scrollFactor.set(0, 0);
+				whiteGraphic.alpha = 1;
+				FlxTween.tween(whiteGraphic, {alpha: 0}, flValue1,);
+
 			case 'Add Camera Zoom':
 				if(ClientPrefs.data.camZooms && FlxG.camera.zoom < 1.35) {
 					if(flValue1 == null) flValue1 = 0.015;
