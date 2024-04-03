@@ -59,16 +59,9 @@
 	<define name="CRASH_HANDLER" if="desktop release" />
 
 	<!-- Assets -->
+	<assets path="assets" />
 	<assets path="assets/fonts" />
-	<assets path="assets/shared"        exclude="*.ogg" if="web"/>
-	<assets path="assets/shared"        exclude="*.mp3" unless="web"/>
 	<assets path="assets/videos"        library="videos"        if="VIDEOS_ALLOWED"/>
-	<assets path="assets/songs"         library="songs"         exclude="*.ogg" if="web"/>
-	<assets path="assets/songs"         library="songs"         exclude="*.mp3" unless="web"/>
-	<section if="TITLE_SCREEN_EASTER_EGG">
-		<assets path="assets/secrets" rename="assets/shared" library="shared" exclude="*.ogg" if="web"/>
-		<assets path="assets/secrets" rename="assets/shared" library="shared" exclude="*.mp3"  unless="web"/>
-	</section>
 
 	<library name="videos"        preload="true" />
 	<library name="songs"         preload="true" />
