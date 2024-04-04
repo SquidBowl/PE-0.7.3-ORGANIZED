@@ -140,28 +140,28 @@ class Paths
 	inline static function getLibraryPathForce(file:String, library:String, ?level:String)
 	{
 		if(level == null) level = library;
-		var returnPath = '$library:assets/$level/$file';
+		var returnPath = '$library:$level/$file';
 		return returnPath;
 	}
 
 	inline public static function getSharedPath(file:String = '')
 	{
-		return 'assets/shared/$file';
+		return 'assets/$file';
 	}
 
 	inline static public function txt(key:String, ?library:String)
 	{
-		return getPath('data/$key.txt', TEXT, library);
+		return getPath('$key.txt', TEXT, library);
 	}
 
 	inline static public function xml(key:String, ?library:String)
 	{
-		return getPath('data/$key.xml', TEXT, library);
+		return getPath('$key.xml', TEXT, library);
 	}
 
 	inline static public function json(key:String, ?library:String)
 	{
-		return getPath('data/$key.json', TEXT, library);
+		return getPath('songs/$key.json', TEXT, library);
 	}
 
 	inline static public function shaderFragment(key:String, ?library:String)
@@ -567,7 +567,7 @@ class Paths
 			{
 				//trace('found Animation Json');
 				changedAnimJson = true;
-				animationJson = getTextFromFile('images/$originalPath/Animation.json');
+				animationJson = getTextFromFile('$originalPath/Animation.json');
 			}
 		}
 
