@@ -206,19 +206,19 @@ class Paths
 	}
 
 	inline static public function voices(song:String):Any
-	{
-		var songKey:String = '${formatToSongPath(song)}/Voices';
-		var voices = returnSound(null, songKey, 'songs');
-		return voices;
-	}
-
-	inline static public function inst(song:String):Any
-	{
-		var songKey:String = '${formatToSongPath(song)}/Inst';
-		var inst = returnSound(null, songKey, 'songs');
-		return inst;
-	}
-
+		{
+			var songKey:String = 'songs/${formatToSongPath(song)}/Voices';
+			var voices = returnSound(null, songKey, null);
+			return voices;
+		}
+		
+		inline static public function inst(song:String):Any
+		{
+			var songKey:String = 'songs/${formatToSongPath(song)}/Inst';
+			var inst = returnSound(null, songKey, null);
+			return inst;
+		}
+		
 	public static var currentTrackedAssets:Map<String, FlxGraphic> = [];
 	static public function image(key:String, ?library:String = null, ?allowGPU:Bool = true):FlxGraphic
 	{
