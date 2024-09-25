@@ -563,31 +563,18 @@ class TitleState extends MusicBeatState
 				case 5:
 					deleteCoolText();
 				case 6:
-					#if PSYCH_WATERMARKS
-					createCoolText(['Not associated', 'with'], -40);
-					#else
-					createCoolText(['In association', 'with'], -40);
-					#end
-				case 8:
-					addMoreText('newgrounds', -40);
-					ngSpr.visible = true;
-				case 9:
-					deleteCoolText();
-					ngSpr.visible = false;
-				case 10:
 					createCoolText([curWacky[0]]);
-				case 12:
+				case 7:
 					addMoreText(curWacky[1]);
-				case 13:
+				case 8:
 					deleteCoolText();
-				case 14:
+				case 9:
 					addMoreText('Friday');
-				case 15:
+				case 10:
 					addMoreText('Night');
-				case 16:
+				case 10:
 					addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
-
-				case 17:
+				case 11:
 					skipIntro();
 			}
 		}
