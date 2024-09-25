@@ -548,33 +548,6 @@ class TitleState extends MusicBeatState
 					FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 					FlxG.sound.music.fadeIn(4, 0, 0.7);
 				case 2:
-					#if PSYCH_WATERMARKS
-					createCoolText(['Psych Engine by'], 40);
-					#else
-					createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
-					#end
-				case 4:
-					#if PSYCH_WATERMARKS
-					addMoreText('Shadow Mario', 40);
-					addMoreText('Riveren', 40);
-					#else
-					addMoreText('present');
-					#end
-				case 5:
-					deleteCoolText();
-				case 6:
-					createCoolText([curWacky[0]]);
-				case 7:
-					addMoreText(curWacky[1]);
-				case 8:
-					deleteCoolText();
-				case 9:
-					addMoreText('Friday');
-				case 10:
-					addMoreText('Night');
-				case 10:
-					addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
-				case 11:
 					skipIntro();
 			}
 		}
