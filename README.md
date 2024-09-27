@@ -1,6 +1,6 @@
 # Friday Night Funkin' - Psych Engine Organized
 
-![](https://github.com/SquidBowl/PE-0.7.2-ORGANIZED/blob/main/art/banner.png))
+![](https://github.com/SquidBowl/PE-0.7.2-ORGANIZED/blob/main/art/banner.png)
 
 A fork of [Psych Engine](https://github.com/ShadowMario/) based off 0.7.2 Experimental Branch that keeps modding and organization in mind. 
 
