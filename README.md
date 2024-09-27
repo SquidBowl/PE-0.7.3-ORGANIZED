@@ -38,7 +38,8 @@ You guys like 0.7.2? Well, I do! Do you hate having to remove all the unneeded f
 * Keoiki - Note Splash Animations
 * Smokey - Sprite Atlas Support
 * Nebula the Zorua - LUA JIT Fork and some Lua reworks
--# Note that all of these are as of the forks creation.
+
+Note that all of these are as of the forks creation.
 
 ## The Forker Themself
 * SquidBowl/TINKATONK - I uhh organized and deleted stuff for modding
