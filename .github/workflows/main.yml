@@ -12,7 +12,7 @@ jobs:
           haxe-version: 4.3.4
       - name: Install Haxelib
         run: |
-          sudo apt install libvlc-dev libvlccore-dev
+          sudo apt-get install libvlc-dev libvlccore-dev
           haxelib setup ~/haxelib
           haxelib install hxpkg
           haxelib run hxpkg install --force
