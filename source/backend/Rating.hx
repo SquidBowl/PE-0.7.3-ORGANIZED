@@ -28,21 +28,21 @@ class Rating
 
 	public static function loadDefault():Array<Rating>
 	{
-		var ratingsData:Array<Rating> = [new Rating('ui/ratings/sick')]; //highest rating goes first
+		var ratingsData:Array<Rating> = [new Rating('sick')]; //highest rating goes first
 
-		var rating:Rating = new Rating('ui/ratings/good');
+		var rating:Rating = new Rating('good');
 		rating.ratingMod = 0.67;
 		rating.score = 200;
 		rating.noteSplash = false;
 		ratingsData.push(rating);
 
-		var rating:Rating = new Rating('ui/ratings/bad');
+		var rating:Rating = new Rating('bad');
 		rating.ratingMod = 0.34;
 		rating.score = 100;
 		rating.noteSplash = false;
 		ratingsData.push(rating);
 
-		var rating:Rating = new Rating('ui/ratings/shit');
+		var rating:Rating = new Rating('shit');
 		rating.ratingMod = 0;
 		rating.score = 50;
 		rating.noteSplash = false;
