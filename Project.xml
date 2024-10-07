@@ -9,7 +9,6 @@
 
 	<!-- NOTE TO SELF: DISABLE THIS IF ISSUES ARE FOUND -->
 	<haxedef name="LINC_LUA_RELATIVE_DYNAMIC_LIB"/> <!-- stable luas PUT AFTER FIRST LINE WITH APP NAME AND ETC -->
-	<haxedef name='no-deprecation-warnings' />
 
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
@@ -20,13 +19,16 @@
 	<set name="SWF_VERSION" value="11.8" />
 	
 	<!-- ______________________ PSYCH ENGINE CUSTOMIZATION ______________________ -->
-	
+
 	<define name="MODS_ALLOWED" if="desktop" />
 	<define name="HSCRIPT_ALLOWED" if="desktop" />
 	<define name="LUA_ALLOWED" if="desktop" />
+	<define name="DISCORD_ALLOWED" />
 
-	<!--enable or disable videos. vidoes will NOT work if the line below is commented out (it is commented out by default)/>-->	
-	<!--define name="VIDEOS_ALLOWED" if="windows || linux || android" unless="32bits"/-->
+	<section if="officialBuild">
+		<define name="TITLE_SCREEN_EASTER_EGG"/>
+		<define name="VIDEOS_ALLOWED" if="windows || linux || android" unless="32bits"/> <!-- IF YOU WANT TO USE VIDEOS ON YOUR SOURCE MOD, GET THIS LINE OUTSIDE OF THE SECTION -->
+	</section>
 
 	<!-- ____________________________ Window Settings ___________________________ -->
 
@@ -63,8 +65,8 @@
 	<assets path="assets/fonts" />
 	<assets path="assets/videos"        library="videos"        if="VIDEOS_ALLOWED"/>
 
-	<library name="videos"        preload="true" />
 	<library name="songs"         preload="true" />
+	<library name="videos"        preload="true" if="VIDEOS_ALLOWED"/>
 
 	<assets path="assets/songs"         library="songs"         exclude="*.ogg" if="web"/>
 	<assets path="assets/songs"         library="songs"         exclude="*.mp3" unless="web"/>
@@ -80,14 +82,18 @@
 	<haxelib name="flixel" />
 	<haxelib name="flixel-ui" />
 	<haxelib name="flixel-addons" />
+	<haxelib name="tjson" />
 
 	<!--Psych stuff needed-->
 	<haxelib name="linc_luajit" if="LUA_ALLOWED"/>
 	<haxelib name="SScript" if="HSCRIPT_ALLOWED"/>
 	<haxelib name="hxCodec" if="VIDEOS_ALLOWED"/>
-	<haxelib name="discord_rpc" if="desktop"/>
+	<haxelib name="hxdiscord_rpc" if="DISCORD_ALLOWED"/>
 	<haxelib name="flxanimate"/>
-	<haxelib name="tjson"/>
+
+	<!-- Disable Discord IO Thread -->
+	<haxedef name="DISCORD_DISABLE_IO_THREAD" if="hxdiscord_rpc" />
+	<haxedef name="NO_PRECOMPILED_HEADERS" if="linux" />
 
 	<!-- Enables a terminal log prompt on debug builds -->
 	<haxelib name="hxcpp-debug-server" if="debug"/>
@@ -132,9 +138,10 @@
 	<haxedef name="HXCPP_CHECK_POINTER" if="CRASH_HANDLER" />
 	<haxedef name="HXCPP_STACK_LINE" if="CRASH_HANDLER" />
 	<haxedef name="HXCPP_STACK_TRACE" if="CRASH_HANDLER" />
+	
+	<!--Disable deprecated warnings-->
 	<haxedef name='no-deprecation-warnings' />
 
-	
 	<!--Macro fixes-->
 	<haxeflag name="--macro" value="allowPackage('flash')" />
 	<haxeflag name="--macro" value="include('my.pack')" />

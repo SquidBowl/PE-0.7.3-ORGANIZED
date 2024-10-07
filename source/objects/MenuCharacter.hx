@@ -1,7 +1,7 @@
 package objects;
 
 import openfl.utils.Assets;
-import tjson.TJSON as Json;
+import haxe.Json;
 
 typedef MenuCharacterFile = {
 	var image:String;
@@ -43,7 +43,7 @@ class MenuCharacter extends FlxSprite
 				visible = false;
 				dontPlayAnim = true;
 			default:
-				var characterPath:String = 'images/menucharacters/' + character + '.json';
+				var characterPath:String = 'images/menus/storymode/menucharacters/' + character + '.json';
 				var rawJson = null;
 
 				#if MODS_ALLOWED
@@ -53,20 +53,20 @@ class MenuCharacter extends FlxSprite
 				}
 
 				if(!FileSystem.exists(path)) {
-					path = Paths.getSharedPath('images/menucharacters/' + DEFAULT_CHARACTER + '.json');
+					path = Paths.getSharedPath('images/menus/storymode/menucharacters/' + DEFAULT_CHARACTER + '.json');
 				}
 				rawJson = File.getContent(path);
 
 				#else
 				var path:String = Paths.getSharedPath(characterPath);
 				if(!Assets.exists(path)) {
-					path = Paths.getSharedPath('images/menucharacters/' + DEFAULT_CHARACTER + '.json');
+					path = Paths.getSharedPath('images/menus/storymode/menucharacters/' + DEFAULT_CHARACTER + '.json');
 				}
 				rawJson = Assets.getText(path);
 				#end
 				
 				var charFile:MenuCharacterFile = cast Json.parse(rawJson);
-				frames = Paths.getSparrowAtlas('menucharacters/' + charFile.image);
+				frames = Paths.getSparrowAtlas('menus/storymode/menucharacters/' + charFile.image);
 				animation.addByPrefix('idle', charFile.idle_anim, 24);
 
 				var confirmAnim:String = charFile.confirm_anim;

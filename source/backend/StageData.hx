@@ -1,7 +1,7 @@
 package backend;
 
 import openfl.utils.Assets;
-import tjson.TJSON as Json;
+import haxe.Json;
 import backend.Song;
 
 typedef StageFile = {
@@ -101,7 +101,7 @@ class StageData {
 		{
 			return null;
 		}
-		return cast Json.parse(rawJson);
+		return cast tjson.TJSON.parse(rawJson);
 	}
 
 	public static function vanillaSongStage(songName):String

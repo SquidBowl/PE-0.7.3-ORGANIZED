@@ -64,11 +64,15 @@ class ControlsSubState extends MusicBeatSubstate
 	{
 		super();
 
+		#if DISCORD_ALLOWED
+		DiscordClient.changePresence("Controls Menu", null);
+		#end
+
 		options.push([true]);
 		options.push([true]);
 		options.push([true, defaultKey]);
 
-		bg = new FlxSprite().loadGraphic(Paths.image('menus/menuDesat'));
+		bg = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
 		bg.color = keyboardColor;
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		bg.screenCenter();
@@ -94,7 +98,7 @@ class ControlsSubState extends MusicBeatSubstate
 		grpBinds = new FlxTypedGroup<Alphabet>();
 		add(grpBinds);
 
-		controllerSpr = new FlxSprite(50, 40).loadGraphic(Paths.image('menus/options/controllertype'), true, 82, 60);
+		controllerSpr = new FlxSprite(50, 40).loadGraphic(Paths.image('controllertype'), true, 82, 60);
 		controllerSpr.antialiasing = ClientPrefs.data.antialiasing;
 		controllerSpr.animation.add('keyboard', [0], 1, false);
 		controllerSpr.animation.add('gamepad', [1], 1, false);
@@ -222,7 +226,7 @@ class ControlsSubState extends MusicBeatSubstate
 			switch(alpha.text)
 			{
 				case '[', ']': //Square and Triangle respectively
-					letter.image = 'menus/options/alphabet_playstation';
+					letter.image = 'alphabet_playstation';
 					letter.updateHitbox();
 					
 					letter.offset.x += 4;
@@ -288,7 +292,9 @@ class ControlsSubState extends MusicBeatSubstate
 			{
 				if(options[curOptions[curSelected]][1] != defaultKey)
 				{
-					bindingBlack = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, /*FlxColor.BLACK*/ FlxColor.WHITE);
+					bindingBlack = new FlxSprite().makeGraphic(1, 1, /*FlxColor.BLACK*/ FlxColor.WHITE);
+					bindingBlack.scale.set(FlxG.width, FlxG.height);
+					bindingBlack.updateHitbox();
 					bindingBlack.alpha = 0;
 					FlxTween.tween(bindingBlack, {alpha: 0.6}, 0.35, {ease: FlxEase.linear});
 					add(bindingBlack);

@@ -45,7 +45,7 @@ class StageWeek1 extends BaseStage
 				dadbattleBlack.visible = false;
 				add(dadbattleBlack);
 
-				dadbattleLight = new BGSprite('stages/week1/spotlight', 400, -400);
+				dadbattleLight = new BGSprite('stages/spotlight', 400, -400);
 				dadbattleLight.alpha = 0.375;
 				dadbattleLight.blend = ADD;
 				dadbattleLight.visible = false;

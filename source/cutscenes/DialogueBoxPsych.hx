@@ -1,6 +1,6 @@
 package cutscenes;
 
-import tjson.TJSON as Json;
+import haxe.Json;
 import openfl.utils.Assets;
 
 import objects.TypedAlphabet;
@@ -53,6 +53,10 @@ class DialogueBoxPsych extends FlxSpriteGroup
 	{
 		super();
 
+		//precache sounds
+		Paths.sound('dialogue');
+		Paths.sound('dialogueClose');
+
 		if(song != null && song != '') {
 			FlxG.sound.playMusic(Paths.music(song), 0);
 			FlxG.sound.music.fadeIn(2, 0, 1);
@@ -69,7 +73,7 @@ class DialogueBoxPsych extends FlxSpriteGroup
 
 		box = new FlxSprite(70, 370);
 		box.antialiasing = ClientPrefs.data.antialiasing;
-		box.frames = Paths.getSparrowAtlas('dialogue/speech_bubble');
+		box.frames = Paths.getSparrowAtlas('speech_bubble');
 		box.scrollFactor.set();
 		box.animation.addByPrefix('normal', 'speech bubble normal', 24);
 		box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);

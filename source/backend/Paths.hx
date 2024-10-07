@@ -1,11 +1,8 @@
 package backend;
 
-import animateatlas.AtlasFrameMaker;
-
 import flixel.graphics.frames.FlxFrame.FlxFrameAngle;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.graphics.FlxGraphic;
-import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
 
 import openfl.display.BitmapData;
@@ -18,7 +15,7 @@ import openfl.geom.Rectangle;
 import lime.utils.Assets;
 import flash.media.Sound;
 
-import tjson.TJSON as Json;
+import haxe.Json;
 
 
 #if MODS_ALLOWED
@@ -35,12 +32,7 @@ class Paths
 			dumpExclusions.push(key);
 	}
 
-	public static var dumpExclusions:Array<String> =
-	[
-		'assets/shared/music/freakyMenu.$SOUND_EXT',
-		'assets/shared/music/breakfast.$SOUND_EXT',
-		'assets/shared/music/tea-time.$SOUND_EXT',
-	];
+	public static var dumpExclusions:Array<String> = ['assets/shared/music/freakyMenu.$SOUND_EXT'];
 	/// haya I love you for the base cache dump I took to the max
 	public static function clearUnusedMemory() {
 		// clear non local assets in the tracked assets list
@@ -69,13 +61,14 @@ class Paths
 
 	// define the locally tracked assets
 	public static var localTrackedAssets:Array<String> = [];
-	public static function clearStoredMemory(?cleanUnused:Bool = false) {
+	public static function clearStoredMemory() {
 		// clear anything not in the tracked assets list
 		@:privateAccess
 		for (key in FlxG.bitmap._cache.keys())
 		{
 			var obj = FlxG.bitmap._cache.get(key);
-			if (obj != null && !currentTrackedAssets.exists(key)) {
+			if (obj != null && !currentTrackedAssets.exists(key))
+			{
 				openfl.Assets.cache.removeBitmapData(key);
 				FlxG.bitmap._cache.remove(key);
 				obj.destroy();
@@ -83,10 +76,10 @@ class Paths
 		}
 
 		// clear all sounds that are cached
-		for (key in currentTrackedSounds.keys()) {
-			if (!localTrackedAssets.contains(key)
-			&& !dumpExclusions.contains(key) && key != null) {
-				//trace('test: ' + dumpExclusions, key);
+		for (key => asset in currentTrackedSounds)
+		{
+			if (!localTrackedAssets.contains(key) && !dumpExclusions.contains(key) && asset != null)
+			{
 				Assets.cache.clear(key);
 				currentTrackedSounds.remove(key);
 			}
@@ -153,17 +146,17 @@ class Paths
 	{
 		return getPath('$key.txt', TEXT, library);
 	}
-
+	
 	inline static public function xml(key:String, ?library:String)
 	{
 		return getPath('$key.xml', TEXT, library);
 	}
-
+	
 	inline static public function json(key:String, ?library:String)
-	{
+		{
 		return getPath('songs/$key.json', TEXT, library);
 	}
-
+	
 	inline static public function shaderFragment(key:String, ?library:String)
 	{
 		return getPath('shaders/$key.frag', TEXT, library);
@@ -205,20 +198,22 @@ class Paths
 		return file;
 	}
 
-	inline static public function voices(song:String):Any
-		{
-			var songKey:String = 'songs/${formatToSongPath(song)}/Voices';
-			var voices = returnSound(null, songKey, null);
-			return voices;
-		}
-		
-		inline static public function inst(song:String):Any
-		{
-			var songKey:String = 'songs/${formatToSongPath(song)}/Inst';
-			var inst = returnSound(null, songKey, null);
-			return inst;
-		}
-		
+	inline static public function voices(song:String, postfix:String = null):Any
+	{
+		var songKey:String = 'songs/${formatToSongPath(song)}/Voices';
+		if(postfix != null) songKey += '-' + postfix;
+		trace('songKey test: $songKey');
+		var voices = returnSound(null, songKey, null);
+		return voices;
+	}
+	
+	inline static public function inst(song:String):Any
+	{
+		var songKey:String = 'songs/${formatToSongPath(song)}/Inst';
+		var inst = returnSound(null, songKey, null);
+		return inst;
+	}
+
 	public static var currentTrackedAssets:Map<String, FlxGraphic> = [];
 	static public function image(key:String, ?library:String = null, ?allowGPU:Bool = true):FlxGraphic
 	{
@@ -253,7 +248,7 @@ class Paths
 			if(retVal != null) return retVal;
 		}
 
-		trace('oh no its returning null NOOOO ($file)');
+		trace('($file) is returning null.');
 		return null;
 	}
 
@@ -355,6 +350,7 @@ class Paths
 	{
 		var useMod = false;
 		var imageLoaded:FlxGraphic = image(key, library, allowGPU);
+
 		var myXml:Dynamic = getPath('images/$key.xml', TEXT, library, true);
 		if(OpenFlAssets.exists(myXml) #if MODS_ALLOWED || (FileSystem.exists(myXml) && (useMod = true)) #end )
 		{
@@ -363,6 +359,18 @@ class Paths
 			#else
 			return FlxAtlasFrames.fromSparrow(imageLoaded, myXml);
 			#end
+		}
+		else
+		{
+			var myJson:Dynamic = getPath('images/$key.json', TEXT, library, true);
+			if(OpenFlAssets.exists(myJson) #if MODS_ALLOWED || (FileSystem.exists(myJson) && (useMod = true)) #end )
+			{
+				#if MODS_ALLOWED
+				return FlxAtlasFrames.fromTexturePackerJson(imageLoaded, (useMod ? File.getContent(myJson) : myJson));
+				#else
+				return FlxAtlasFrames.fromTexturePackerJson(imageLoaded, myJson);
+				#end
+			}
 		}
 		return getPackerAtlas(key, library);
 	}
@@ -397,6 +405,21 @@ class Paths
 		#end
 	}
 
+	inline static public function getAsepriteAtlas(key:String, ?library:String = null, ?allowGPU:Bool = true):FlxAtlasFrames
+	{
+		var imageLoaded:FlxGraphic = image(key, library, allowGPU);
+		#if MODS_ALLOWED
+		var jsonExists:Bool = false;
+
+		var json:String = modsImagesJson(key);
+		if(FileSystem.exists(json)) jsonExists = true;
+
+		return FlxAtlasFrames.fromTexturePackerJson(imageLoaded, (jsonExists ? File.getContent(json) : getPath('images/$key.json', library)));
+		#else
+		return FlxAtlasFrames.fromTexturePackerJson(imageLoaded, getPath('images/$key.json', library));
+		#end
+	}
+
 	inline static public function formatToSongPath(path:String) {
 		var invalidChars = ~/[~&\\;:<>#]/;
 		var hideChars = ~/[.,'"%?!]/;
@@ -410,17 +433,20 @@ class Paths
 		#if MODS_ALLOWED
 		var modLibPath:String = '';
 		if (library != null) modLibPath = '$library/';
-		if (path != null) modLibPath += '$path/';
+		if (path != null) modLibPath += '$path';
 
 		var file:String = modsSounds(modLibPath, key);
 		if(FileSystem.exists(file)) {
-			if(!currentTrackedSounds.exists(file)) {
+			if(!currentTrackedSounds.exists(file))
+			{
 				currentTrackedSounds.set(file, Sound.fromFile(file));
+				//trace('precached mod sound: $file');
 			}
-			localTrackedAssets.push(key);
+			localTrackedAssets.push(file);
 			return currentTrackedSounds.get(file);
 		}
 		#end
+
 		// I hate this so god damn much
 		var gottenPath:String = '$key.$SOUND_EXT';
 		if(path != null) gottenPath = '$path/$gottenPath';
@@ -428,17 +454,15 @@ class Paths
 		gottenPath = gottenPath.substring(gottenPath.indexOf(':') + 1, gottenPath.length);
 		// trace(gottenPath);
 		if(!currentTrackedSounds.exists(gottenPath))
-		#if MODS_ALLOWED
-			currentTrackedSounds.set(gottenPath, Sound.fromFile('./' + gottenPath));
-		#else
 		{
-			var folder:String = '';
-			if(path == 'songs') folder = 'songs:';
-
-			trace(folder + getPath('$path/$key.$SOUND_EXT', SOUND, library));
-			currentTrackedSounds.set(gottenPath, OpenFlAssets.getSound(folder + getPath('$path/$key.$SOUND_EXT', SOUND, library)));
+			var retKey:String = (path != null) ? '$path/$key' : key;
+			retKey = ((path == 'songs') ? 'songs:' : '') + getPath('$retKey.$SOUND_EXT', SOUND, library);
+			if(OpenFlAssets.exists(retKey, SOUND))
+			{
+				currentTrackedSounds.set(gottenPath, OpenFlAssets.getSound(retKey));
+				//trace('precached vanilla sound: $retKey');
+			}
 		}
-		#end
 		localTrackedAssets.push(gottenPath);
 		return currentTrackedSounds.get(gottenPath);
 	}
@@ -453,7 +477,7 @@ class Paths
 	}
 
 	inline static public function modsJson(key:String) {
-		return modFolders('data/' + key + '.json');
+		return modFolders(key + '.json');
 	}
 
 	inline static public function modsVideo(key:String) {
@@ -474,6 +498,10 @@ class Paths
 
 	inline static public function modsTxt(key:String) {
 		return modFolders('images/' + key + '.txt');
+	}
+
+	inline static public function modsImagesJson(key:String) {
+		return modFolders('images/' + key + '.json');
 	}
 
 	/* Goes unused for now
@@ -567,7 +595,7 @@ class Paths
 			{
 				//trace('found Animation Json');
 				changedAnimJson = true;
-				animationJson = getTextFromFile('$originalPath/Animation.json');
+				animationJson = getTextFromFile('images/$originalPath/Animation.json');
 			}
 		}
 
