@@ -20,6 +20,10 @@ import objects.Character;
 import objects.HealthIcon;
 import objects.Bar;
 
+#if !FLX_DEBUG
+@:bitmap("assets/images/debugger/cursorCross.png")
+private class GraphicCursorCross extends openfl.display.BitmapData {}
+#end
 class CharacterEditorState extends MusicBeatState
 {
 	var character:Character;
