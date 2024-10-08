@@ -38,6 +38,7 @@ You guys like 0.7.3? Well, I do! Do you hate having to remove all the unneeded f
 
 Note that all of these are as of the forks creation.
 
-## The Forker Themself
-* SquidBowl/TINKATONK - I uhh organized and deleted stuff for modding
+## Psych Organized Credits
+* SquidBowl/TINKATONK - "Director", did all of the editing of base 0.7.3 Psych
+* Cobalt - updated main.yml for Actions stuff 
 _____________________________________
