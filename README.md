@@ -2,29 +2,28 @@
 
 ![](https://github.com/SquidBowl/PE-0.7.2-ORGANIZED/blob/main/art/banner.png)
 
-A fork of [Psych Engine](https://github.com/ShadowMario/) based off 0.7.3.
+A fork of [Psych Engine](https://github.com/ShadowMario/) based on 0.7.3.
 
-You guys like 0.7.3? Well, I do! Do you hate having to remove all the unneeded files? Well, I do too. So I did something about it! I made a Psych Fork that removes and cleans any and all unneeded assets, classes, and files! Note, this fork is made for my use in mind, and while can be used by others, it might not cater to everyone!
+Do you guys like 0.7.3? Well, I do! Do you hate having to remove all the unneeded files? Well, I do too. So I did something about it! I made a Psych Fork that removes and cleans any unneeded assets, classes, and files! Note, this fork is made for my use in mind, and while can be used by others, it might not cater to everyone! Please note that this is a Psych Engine fork and nothing more, I'm not advertising this as a brand of any sort.
 
-## Changes
+## Changes:
 - Removed unneeded Stage classes
 - Ran all images through oxipng for optimal image quality and performance
+- Utilized Funkin Packer to combine/merge assets for easier use
 - Deleted any unneeded files/assets
 - Repathed folders to keep things organized
-- Fixed the slow camera movement in PlayState, MainMenuState, and GameOverSubstate
 - Reduced Deprecation Warnings
 - Removed unneeded files in Art folder in Root folder
 - Organized menu folders/Uncluttered shared folder
 
 ## Installation:
-* Inside the root folder is another folder named "setup". If you struggle to compile, just run the .BAT file.
-* In addition to what's above, you can run ``haxelib run hmm install`` if all you want is the dependencies.
-
+* Refer to [this list](https://github.com/ShadowMario/FNF-PsychEngine/wiki/Libraries-versions) of libraries to install.
+_____________________________________
 # Psych Engine Credits: 
 * Shadow Mario - Programmer
 * RiverOaken - Artist
 
-## Special Thanks
+## Special Thanks:
 * bbpanzu - Ex-Programmer
 * Yoshubs - Ex-Programmer
 * SqirraRNG - Crash Handler and Base code for Chart Editor's Waveform
@@ -36,9 +35,8 @@ You guys like 0.7.3? Well, I do! Do you hate having to remove all the unneeded f
 * Nebula the Zorua - some Lua reworks
 * superpowers04 - LUA JIT Fork
 
-Note that all of these are as of the forks creation.
+Note that all of the credits are as of the version of Psych it is forked from.
 
-## Psych Organized Credits
+## Psych Organized Credits:
 * SquidBowl/TINKATONK - "Director", did all of the editing of base 0.7.3 Psych
 * Cobalt - updated main.yml for Actions stuff 
-_____________________________________
