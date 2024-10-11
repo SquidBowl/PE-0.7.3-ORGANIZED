@@ -86,7 +86,7 @@ class CreditsState extends MusicBeatState
 					Mods.currentModDirectory = creditsStuff[i][5];
 				}
 
-				var str:String = 'credits/missing_icon';
+				var str:String = 'menus/credits/missing_icon';
 				if(creditsStuff[i][1] != null && creditsStuff[i][1].length > 0)
 				{
 					var fileName = 'menus/credits/' + creditsStuff[i][1];
