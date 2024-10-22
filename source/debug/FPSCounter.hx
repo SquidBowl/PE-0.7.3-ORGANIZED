@@ -4,43 +4,25 @@ import flixel.FlxG;
 import openfl.text.TextField;
 import openfl.text.TextFormat;
 import openfl.system.System;
-
-import haxe.Timer;
-import openfl.events.Event;
-import openfl.text.TextField;
-import openfl.text.TextFormat;
-#if gl_stats
-import openfl.display._internal.stats.Context3DStats;
-import openfl.display._internal.stats.DrawCallContext;
-#end
-#if flash
-import openfl.Lib;
-#end
-
-#if openfl
-import openfl.system.System;
-#end
+import debug.Memory;
 
 /**
 	The FPS class provides an easy-to-use monitor to display
 	the current frame rate of an OpenFL project
 **/
-#if !openfl_debug
-@:fileXml('tags="haxe,release"')
-@:noDebug
-#end
-
 class FPSCounter extends TextField
 {
 	/**
 		The current frame rate, expressed using frames-per-second
 	**/
-	var times:Array<Float> = [];
-	var memPeak:UInt = 0;
 	public var currentFPS(default, null):Int;
 
-	@:noCompletion private var cacheCount:Int;
-	@:noCompletion private var currentTime:Float;
+	/**
+		The current memory usage (WARNING: this is NOT your total program memory usage, rather it shows the garbage collector memory)
+	**/
+	public var memoryMegas(get, never):Float;
+
+	@:noCompletion private var times:Array<Float>;
 
 	public function new(x:Float = 10, y:Float = 10, color:Int = 0x000000)
 	{
@@ -52,80 +34,44 @@ class FPSCounter extends TextField
 		currentFPS = 0;
 		selectable = false;
 		mouseEnabled = false;
-		defaultTextFormat = new TextFormat(Paths.font('vcr.ttf'), 16, color);
+		defaultTextFormat = new TextFormat("_sans", 14, color);
 		autoSize = LEFT;
 		multiline = true;
 		text = "FPS: ";
 
-		cacheCount = 0;
-		currentTime = 0;
 		times = [];
-
-		#if flash
-		addEventListener(Event.ENTER_FRAME, function(e)
-		{
-			var time = Lib.getTimer();
-			__enterFrame(time - currentTime);
-		});
-		#end
 	}
 
-	static final intervalArray:Array<String> = ['B', 'KB', 'MB', 'GB', 'TB'];
-
-	public static function getInterval(num:UInt):String
-	{
-		var size:Float = num;
-		var data = 0;
-		while (size > 1024 && data < intervalArray.length - 1)
-		{
-			data++;
-			size = size / 1024;
-		}
-
-		size = Math.round(size * 100) / 100;
-		return size + " " + intervalArray[data];
-	}
+	var deltaTimeout:Float = 0.0;
 
 	// Event Handlers
-	@:noCompletion
-	private #if !flash override #end function __enterFrame(deltaTime:Float):Void
+	private override function __enterFrame(deltaTime:Float):Void
 	{
-		var now:Float = Timer.stamp();
+		// prevents the overlay from updating every frame, why would you need to anyways
+		if (deltaTimeout > 1000) {
+			deltaTimeout = 0.0;
+			return;
+		}
+
+		final now:Float = haxe.Timer.stamp() * 1000;
 		times.push(now);
-		while (times[0] < now - 1)
-			times.shift();
+		while (times[0] < now - 1000) times.shift();
 
-		var mem = System.totalMemory;
-		if (mem > memPeak)
-			memPeak = mem;
-
-		while (times[0] < currentTime - 1000)
-		{
-			times.shift();
-		}
-
-		text = ''; // quick reset
-		text += times.length + ' FPS\n';
-		var memoryMegas:Float = 0;
-			
-		#if openfl
-		text += '${getInterval(mem)} / ${getInterval(memPeak)}\n';
-		#end
-
-		textColor = 0xFFFFFFFF;
-		if (memoryMegas > 3000 || times.length <= 60) // there is kinda no reason why it should warn you if you have 50% of 240 FPS
-		{
-			textColor = 0xFFFF0000;
-		}
-
-		#if (gl_stats && !disable_cffi && (!html5 || !canvas))
-		text += "\ntotalDC: " + Context3DStats.totalDrawCalls();
-		text += "\nstageDC: " + Context3DStats.contextDrawCalls(DrawCallContext.STAGE);
-		text += "\nstage3DDC: " + Context3DStats.contextDrawCalls(DrawCallContext.STAGE3D);
-		#end
-		//text += 'Psych Forever 0.1.5\n';
-
-		text += "\n";
-
+		currentFPS = times.length < FlxG.updateFramerate ? times.length : FlxG.updateFramerate;		
+		updateText();
+		deltaTimeout += deltaTime;
 	}
+
+    public dynamic function updateText():Void { // so people can override it in hscript
+        text = 'FPS: ${currentFPS}'
+        + '\nMemory: ${flixel.util.FlxStringUtil.formatBytes(debug.Memory.getProcessMemory())}'
+        + '\nGC Memory: ${flixel.util.FlxStringUtil.formatBytes(debug.Memory.getGCMemory())}';
+
+        textColor = 0xFFFFFFFF;
+        if (currentFPS < FlxG.drawFramerate * 0.5)
+            textColor = 0xFFFF0000;
+    }
+
+    inline function get_memoryMegas():Float
+        return debug.Memory.getProcessMemory();
 }
