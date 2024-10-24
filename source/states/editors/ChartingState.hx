@@ -1858,6 +1858,7 @@ class ChartingState extends MusicBeatState
 				FlxG.sound.music.stop();
 				if(vocals != null) vocals.stop();
 				if(opponentVocals != null) opponentVocals.stop();
+				PlayState.chartingMode = true;
 
 				//if(_song.stage == null) _song.stage = stageDropDown.selectedLabel;
 				StageData.loadDirectory(_song);
