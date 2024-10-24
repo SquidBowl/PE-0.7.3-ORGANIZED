@@ -327,6 +327,7 @@ class ChartingState extends MusicBeatState
 		"W/S or Mouse Wheel - Change Conductor's strum time
 		\nA/D - Go to the previous/next section
 		\nLeft/Right - Change Snap
+		\nPress T to toggle the second counter at the top right
 		\nUp/Down - Change Conductor's Strum Time with Snapping" +
 		#if FLX_PITCH
 		"\nLeft Bracket / Right Bracket - Change Song Playback Rate (SHIFT to go Faster)
@@ -1713,6 +1714,11 @@ class ChartingState extends MusicBeatState
 			strumLineNotes.members[i].y = strumLine.y;
 		}
 
+		if (FlxG.keys.justPressed.T) {
+			ClientPrefs.data.changeTimeText = !ClientPrefs.data.changeTimeText; 
+			ClientPrefs.saveSettings();
+		}
+		
 		FlxG.mouse.visible = true;//cause reasons. trust me
 		camPos.y = strumLine.y;
 		if(!disableAutoScrolling.checked) {
@@ -2151,11 +2157,19 @@ class ChartingState extends MusicBeatState
 		#end
 
 		bpmTxt.text =
-		calculateTime(FlxMath.roundDecimal(FlxG.sound.music.time, 2)) + " / " + calculateTime(FlxG.sound.music.length) +
-		"\nSection: " + curSec +
-		"\n\nBeat: " + Std.string(curDecBeat).substring(0,4) +
-		"\n\nStep: " + curStep +
-		"\n\nBeat Snap: " + quantization + "th";
+		if (ClientPrefs.data.changeTimeText) {
+			calculateTime(FlxMath.roundDecimal(FlxG.sound.music.time, 2)) + " / " + calculateTime(FlxG.sound.music.length) +
+			"\nSection: " + curSec +
+			"\n\nBeat: " + Std.string(curDecBeat).substring(0,4) +
+			"\n\nStep: " + curStep +
+			"\n\nBeat Snap: " + quantization + "th";	
+		} else {
+			Std.string(FlxMath.roundDecimal(Conductor.songPosition / 1000, 2)) + " / " + Std.string(FlxMath.roundDecimal(FlxG.sound.music.length / 1000, 2)) +
+			"\nSection: " + curSec +
+			"\n\nBeat: " + Std.string(curDecBeat).substring(0,4) +
+			"\n\nStep: " + curStep +
+			"\n\nBeat Snap: " + quantization + "th";	
+		}
 
 		var playedSound:Array<Bool> = [false, false, false, false]; //Prevents ouchy GF sex sounds
 		curRenderedNotes.forEachAlive(function(note:Note) {

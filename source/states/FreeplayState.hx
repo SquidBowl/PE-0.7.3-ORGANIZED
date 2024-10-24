@@ -10,6 +10,8 @@ import objects.MusicPlayer;
 import substates.GameplayChangersSubstate;
 import substates.ResetScoreSubState;
 
+import states.editors.ChartingState;
+
 import flixel.math.FlxMath;
 
 class FreeplayState extends MusicBeatState
@@ -109,7 +111,6 @@ class FreeplayState extends MusicBeatState
 			var icon:HealthIcon = new HealthIcon(songs[i].songCharacter);
 			icon.sprTracker = songText;
 
-			
 			// too laggy with a lot of songs, so i had to recode the logic for it
 			songText.visible = songText.active = songText.isMenuItem = false;
 			icon.visible = icon.active = false;
@@ -395,8 +396,12 @@ class FreeplayState extends MusicBeatState
 				super.update(elapsed);
 				return;
 			}
-			LoadingState.loadAndSwitchState(new PlayState());
 
+			if (FlxG.keys.pressed.SHIFT){
+				LoadingState.loadAndSwitchState(new ChartingState());
+			}else{
+				LoadingState.loadAndSwitchState(new PlayState());
+			}
 			FlxG.sound.music.volume = 0;
 					
 			destroyFreeplayVocals();
