@@ -4,18 +4,19 @@
 
 A fork of [Psych Engine](https://github.com/ShadowMario/) based on 0.7.3.
 
-Do you guys like 0.7.3? Well, I do! Do you hate having to remove all the unneeded files? Well, I do too. So I did something about it! I made a Psych Fork that removes and cleans any unneeded assets, classes, and files! Note, this fork is made for my use in mind, and while can be used by others, it might not cater to everyone! Please note that this is a Psych Engine fork and nothing more, I'm not advertising this as a brand of any sort.
-
+Do you guys like 0.7.3? Well, I do! Do you hate having to remove all the unneeded files? Well, I do too. So I did something about it! I made a Psych Fork that removes and cleans any unneeded assets, classes, and files! Note, this fork is made with my use in mind, and others can use while, it might not cater to everyone! Just so you know, this is a Psych Engine fork and nothing more, I'm not advertising this as a brand of any sort.
 ## Changes:
-- Removed unneeded Stage classes
-- Ran all images through oxipng for optimal image quality and performance
-- Utilized Funkin Packer to combine/merge assets for easier use
-- Deleted any unneeded files/assets
-- Repathed folders to keep things organized
-- Reduced Deprecation Warnings
-- Removed unneeded files in Art folder in Root folder
-- Organized menu folders/Uncluttered shared folder
-
+* Removed unneeded Stage classes
+* Ran all images through oxipng for optimal image quality and performance
+* Utilized Funkin Packer to combine/merge assets for easier use
+* Deleted any unneeded files/assets
+* Repathed folders to keep things organized
+* Reduced Deprecation Warnings
+* Removed unneeded files in Art folder in Root folder
+* Organized menu folders/Uncluttered shared folder
+* Accurate FPSCounter class, displays GC memory along with normal memory
+* Press "T" to change the song length from displaying the time like "64.09 / 102", to show "1:04 / 1:42" in ChartingState
+* Pressing Shift + Enter in FreeplayState opens the song in the ChartingState, like how it did in 0.6.3. Press ACCEPT to enter Playstate just how the ChartingState would usually do.
 ## Installation:
 * Refer to [this list](https://github.com/ShadowMario/FNF-PsychEngine/wiki/Libraries-versions) of libraries to install.
 _____________________________________
