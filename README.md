@@ -10,10 +10,10 @@ Do you guys like 0.7.3? Well, I do! Do you hate having to remove all the unneede
 * Ran all images through oxipng for optimal image quality and performance
 * Utilized Funkin Packer to combine/merge assets for easier use
 * Deleted any unneeded files/assets
-* Repathed folders to keep things organized
+* Repathed folders to keep things organized. Shared folder is removed.
 * Reduced Deprecation Warnings
 * Removed unneeded files in Art folder in Root folder
-* Organized menu folders/Uncluttered shared folder
+* Organized menu folders
 * Accurate FPSCounter class, displays GC memory along with normal memory
 * Press "T" to change the song length from displaying the time like "64.09 / 102", to show "1:04 / 1:42" in ChartingState
 * Pressing Shift + Enter in FreeplayState opens the song in the ChartingState, like how it did in 0.6.3. Press ACCEPT to enter Playstate just how the ChartingState would usually do.
