@@ -2151,7 +2151,7 @@ class ChartingState extends MusicBeatState
 		#end
 
 		bpmTxt.text =
-		Std.string(FlxMath.roundDecimal(Conductor.songPosition / 1000, 2)) + " / " + Std.string(FlxMath.roundDecimal(FlxG.sound.music.length / 1000, 2)) +
+		calculateTime(FlxMath.roundDecimal(FlxG.sound.music.time, 2)) + " / " + calculateTime(FlxG.sound.music.length) +
 		"\nSection: " + curSec +
 		"\n\nBeat: " + Std.string(curDecBeat).substring(0,4) +
 		"\n\nStep: " + curStep +
@@ -2523,6 +2523,14 @@ class ChartingState extends MusicBeatState
 
 		updateNoteUI();
 		updateGrid();
+	}
+
+	function calculateTime(miliseconds:Float = 0):String
+	{
+		var seconds = Std.int(miliseconds / 1000);
+		var minutes = Std.int(seconds / 60);
+		seconds = seconds % 60;
+		return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
 	}
 
 	function recalculateSteps(add:Float = 0):Int
