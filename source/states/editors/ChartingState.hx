@@ -80,7 +80,7 @@ class ChartingState extends MusicBeatState
 		['Change Scroll Speed', "Value 1: Scroll Speed Multiplier (1 is default)\nValue 2: Time it takes to change fully in seconds."],
 		['Set Property', "Value 1: Variable name\nValue 2: New value"],
 		['Play Sound', "Value 1: Sound file name\nValue 2: Volume (Default: 1), ranges from 0 to 1"],
-		['White Flash', "Value 1: How long you want it to fade out."]
+		['Camera Flash', "Value 1: How long you want it to fade out.\nValue 2: What color you want it to be. Leave blank for white.\nExample: 0xFF0000 (Red)"]
 	];
 
 	var _file:FileReference;

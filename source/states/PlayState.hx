@@ -2001,8 +2001,9 @@ class PlayState extends MusicBeatState
 				if(flValue1 == null || flValue1 < 1) flValue1 = 1;
 				gfSpeed = Math.round(flValue1);
 
-			case 'White Flash':
-				camGame.flash(0xffffffff, flValue1);
+			case 'Camera Flash':
+				var colorValue:Int = (flValue2 != null) ? Std.int(flValue2) : 0xffffffff; 
+				camGame.flash(colorValue, flValue1);
 
 			case 'Add Camera Zoom':
 				if(ClientPrefs.data.camZooms && FlxG.camera.zoom < 1.35) {
