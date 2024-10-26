@@ -15,7 +15,7 @@ class Rating
 	public function new(name:String)
 	{
 		this.name = name;
-		this.image = name;
+		this.image = 'ui/ratings/' + name; // Correct the path to the image
 		this.hitWindow = 0;
 
 		var window:String = name + 'Window';
