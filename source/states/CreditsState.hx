@@ -160,6 +160,18 @@ class CreditsState extends MusicBeatState
 					holdTime = 0;
 				}
 
+				if (FlxG.mouse.wheel != 0)
+				{
+					if (FlxG.mouse.wheel > 0)
+					{
+						changeSelection(-shiftMult); 
+					}
+					else if (FlxG.mouse.wheel < 0)
+					{
+						changeSelection(shiftMult); 
+					}
+				}
+
 				if(controls.UI_DOWN || controls.UI_UP)
 				{
 					var checkLastHold:Int = Math.floor((holdTime - 0.5) * 10);
