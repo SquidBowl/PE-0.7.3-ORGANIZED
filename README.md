@@ -40,4 +40,5 @@ Note that all of the credits are as of the version of Psych it is forked from.
 
 ## Psych Organized Credits:
 * SquidBowl/TINKATONK - "Director", did all of the editing of base 0.7.3 Psych
+* Skruyo - Provided the accurate FPSCounter stuff... how neat!
 * Cobalt - updated main.yml for Actions stuff 
