@@ -8,11 +8,7 @@
   A fork of <a href="https://github.com/ShadowMario/">Psych Engine</a> based on 0.7.3.
 </h2>
 
-
-
-## Do you guys like 0.7.3?
-
-Well, I do! Do you hate having to remove all the unneeded files? Well, I do too. So I did something about it! I made a Psych Fork that removes and cleans unneeded assets, classes, and files! Note, this fork is made with my use in mind, and while others can use it, it might not cater to everyone! This is a Psych Engine fork and nothing more, I'm not advertising this as a brand of any sort; nor am I requesting any form of credit.
+Do you guys like 0.7.3? Well, I do! Do you hate having to remove all the unneeded files? Well, I do too. So I did something about it! I made a Psych Fork that removes and cleans unneeded assets, classes, and files! Note, this fork is made with my use in mind, and while others can use it, it might not cater to everyone! This is a Psych Engine fork and nothing more, I'm not advertising this as a brand of any sort; nor am I requesting any form of credit.
 ## Changes:
 * Removed unneeded Stage classes
 * Ran all images through oxipng for optimal image quality and performance
