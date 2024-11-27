@@ -5,7 +5,7 @@
   <img src="https://github.com/SquidBowl/PE-0.7.2-ORGANIZED/blob/main/art/banner.png" alt="Banner">
 </p>
 <h2 align="center">
-  A fork of <a href="https://github.com/ShadowMario/">Psych Engine</a> based on 0.7.3.
+  A fork of <a href="https://github.com/ShadowMario/">Psych Engine</a> based on <a href="https://github.com/ShadowMario/FNF-PsychEngine/releases/tag/0.7.3">0.7.3</a>.
 </h2>
 
 Do you guys like 0.7.3? Well, I do! Do you hate having to remove all the unneeded files? Well, I do too. So I did something about it! I made a Psych Fork that removes and cleans unneeded assets, classes, and files! Note, this fork is made with my use in mind, and while others can use it, it might not cater to everyone! This is a Psych Engine fork and nothing more, I'm not advertising this as a brand of any sort; nor am I requesting any form of credit.
